@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:football_news/screen/menu.dart';
-import 'package:football_news/screen/newslist_form.dart';
+import 'package:football_news/screens/menu.dart';
+import 'package:football_news/screens/newslist_form.dart';
+import 'package:football_news/screens/news_entry_list.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -11,31 +12,43 @@ class LeftDrawer extends StatelessWidget {
       child: ListView(
         children: [
           const DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.blue,
-            ),
+            decoration: BoxDecoration(color: Colors.blue),
             child: Column(
               children: [
                 Text(
                   'Football News',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 30, 
+                    fontSize: 30,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,          
+                    color: Colors.white,
                   ),
                 ),
                 Padding(padding: EdgeInsets.all(10)),
-                Text("Seluruh berita sepak bola terkini di sini!",
-                    textAlign: TextAlign.center,
+                Text(
+                  "Seluruh berita sepak bola terkini di sini!",
+                  textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 15, 
+                    fontSize: 15,
                     fontWeight: FontWeight.normal,
-                    color: Colors.white,          
+                    color: Colors.white,
                   ),
-                    ),
+                ),
               ],
             ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.add_reaction_rounded),
+            title: const Text('News List'),
+            onTap: () {
+              // Route to news list page
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const NewsEntryListPage(),
+                ),
+              );
+            },
           ),
           ListTile(
             leading: const Icon(Icons.home_outlined),
@@ -43,10 +56,9 @@ class LeftDrawer extends StatelessWidget {
             // Bagian redirection ke MyHomePage
             onTap: () {
               Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MyHomePage(),
-                  ));
+                context,
+                MaterialPageRoute(builder: (context) => MyHomePage()),
+              );
             },
           ),
           ListTile(
@@ -56,12 +68,9 @@ class LeftDrawer extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => NewsFormPage(),
-                ),
+                MaterialPageRoute(builder: (context) => NewsFormPage()),
               );
             },
-
           ),
         ],
       ),
